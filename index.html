@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Owen Painter - Portfolio</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100%;
+            background-color: #1a1a1a;
+            color: #f4f4f4;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .scroll-top-cube {
+            width: 20px;
+            height: 20px;
+            background: white;
+            cursor: pointer;
+            transform: rotateX(20deg) rotateY(20deg);
+            border: 2px solid orange;
+            transition: transform 0.3s ease, background 0.3s ease;
+            margin-right: 20px;
+        }
+
+        .scroll-top-cube:hover {
+            background: orange;
+            transform: rotateX(0deg) rotateY(0deg) scale(1.1);
+        }
+
+        header.hero {
+            background-image: url('forest.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            height: 100vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 1.5s forwards;
+        }
+
+        @keyframes blinking-cursor {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: white; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            color: white;
+            margin-left: 2px;
+            animation: none;
+        }
+
+        .typing-cursor.blink {
+            animation: blinking-cursor 0.8s infinite;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: auto;
+            position: relative;
+            text-align: center; /* Center the content within the container */
+        }
+
+        .section {
+            padding: 2rem;
+            min-height: 100vh;
+            display: block;
+            box-sizing: border-box;
+        }
+
+        #about.section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .about-wrapper {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 900px;
+        }
+
+        .about-wrapper img {
+            width: 240px;
+            border-radius: 12px;
+        }
+
+        .about-wrapper-text {
+            flex: 1; /* Allows text to take remaining space */
+            text-align: left; /* Align text to the left */
+        }
+
+        .about-wrapper-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-wrapper-text p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .about-wrapper-text h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-wrapper-text ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+        }
+
+        .about-wrapper-text li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Modified for left image, right text */
+        @media (min-width: 768px) {
+            .about-wrapper {
+                flex-direction: row; /* Image on left, text on right for larger screens */
+            }
+            .about-wrapper img {
+                margin-right: auto; /* Push image to the left */
+            }
+            .about-wrapper-text {
+                margin-left: auto; /* Push text to the right */
+                max-width: 500px; /* Limit text width */
+            }
+        }
+
+        #projects h2,
+        #contact h2 {
+            text-align: center; /* Center the section titles */
+            margin-bottom: 1.5rem;
+            padding-top: 30px; /* Add 20 pixels of padding at the top */
+        }
+
+        .project {
+            background: #222;
+            color: #f4f4f4;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            z-index: 1;
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto; /* Center the project divs */
+            margin-right: auto;
+        }
+
+        .project h3 {
+            color: #f4f4f4;
+        }
+
+        .project a {
+            color: #9cdcfe;
+        }
+
+        #contact p {
+            text-align: center; /* Center the contact information */
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            padding-top: 30px; /* Add 20 pixels of padding at the top */
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #1a1a1a;
+            color: #aaa;
+            z-index: 1;
+            position: relative;
+        }
+
+        footer a {
+            color: #aaa;
+        }
+
+        .mouse-follower {
+            width: 120px;
+            height: 120px;
+            border-radius: 30% 70% 70% 30% / 50% 40% 60% 50%;
+            background-color: rgba(255, 165, 0, 0.6);
+            position: absolute;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0;
+            transform-origin: center center;
+            transition: opacity 0.3s ease-in-out, transform 0.1s linear, width 0.3s ease-in-out, height 0.3s ease-in-out, border-radius 0.4s ease-in-out, background-color 0.3s ease-in-out;
+        }
+
+        .mouse-follower.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .mouse-follower.grow {
+            border-radius: 50%;
+            background-color: rgba(255, 165, 0, 0.75);
+        }
+
+        .mouse-follower::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60%;
+            height: 60%;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: blob-inner-move 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes blob-inner-move {
+            0%, 100% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+                transform: translate(-60%, -40%) scale(0.9);
+            }
+            50% {
+                border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+                transform: translate(-40%, -60%) scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="scroll-top-cube" title="Back to Top"></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 id="hero-title"></h1>
+            <p>
+                I'm a software developer with experience building cross-platform streaming applications.
+            </p>
+        </div>
+    </header>
+
+    <div class="container">
+    <section id="about" class="section">
+        <div class="mouse-follower"></div>
+        <div class="about-wrapper">
+            <img src="your-image.png" alt="About Me Image" />
+            <div class="about-wrapper-text">
+                <h2>About Me</h2>
+                <p>I'm a software developer with experience building cross-platform streaming applications...</p>
+
+                <h3>Tech I Use</h3>
+                <ul class="tech-icons">
+                    <li><img class="tech-icon-image" src="bash-logo.png" alt="Bash Logo"></li>
+                    <li><img class="tech-icon-image" src="powershell-logo.png" alt="PowerShell Logo"></li>
+                    <li><img class="tech-icon-image" src="java-logo.png" alt="Java Logo"></li>
+                    <li><img class="tech-icon-image" src="python-logo.png" alt="Python Logo"></li>
+                    <li><img class="tech-icon-image" src="brightscript-roku-logo.png" alt="BrightScript/Roku Logo"></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .about-wrapper-text .tech-icons {
+        list-style-type: none;
+        padding-left: 0;
+        display: flex;
+        gap: 1rem; /* Adjust spacing between icons */
+        align-items: center; /* Vertically align icons */
+    }
+
+    .about-wrapper-text .tech-icons li {
+        margin: 0; /* Remove default list item margins */
+        width: 32px; /* Force the list item to be a square */
+        height: 32px;
+        display: flex; /* Enable centering within the list item */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+    }
+
+    .tech-icon-image {
+        width: 100%; /* Make the image fill the list item */
+        height: 100%;
+        object-fit: cover; /* Crop or scale to fill the square */
+    }
+</style>
+
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Roku Fitness App</h3>
+                <p>
+                    A custom Roku channel developed in BrightScript...
+                    <br/>
+                    <a href="https://github.com/OwenPainter/OwenRokuProject" target="_blank">View on GitHub</a>
+                </p>
+            </div>
+            <!-- <div class="project">
+                <h3>Weather Dashboard</h3>
+                <p>
+                    A responsive web app that fetches real-time weather data from an API and displays it visually.
+                    <br/>
+                    <a href="https://github.com/OwenPainter/weather-dashboard" target="_blank">View on GitHub</a>
+                </p>
+            </div>
+            <div class="project">
+                <h3>Portfolio Website</h3>
+                <p>
+                    This site! Built with HTML, CSS, and JavaScript, showcasing dynamic UI elements and animations.
+                    <br/>
+                    <a href="https://github.com/OwenPainter/portfolio" target="_blank">View on GitHub</a>
+                </p>
+            </div> -->
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <p>GitHub: <a href="https://github.com/OwenPainter" target="_blank">OwenPainter</a></p>
+            <!-- <p>LinkedIn: <a href="https://linkedin.com/in/yourusername" target="_blank">yourusername</a></p> -->
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2025 Owen Painter. Code released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.
+    </footer>
+
+    <script>
+        const heroTitle = document.getElementById('hero-title');
+        const heroText = "Owen Painter";
+        const cursor = document.createElement('span');
+        cursor.classList.add('typing-cursor');
+        cursor.textContent = '|';
+        heroTitle.appendChild(cursor);
+
+        let i = 0;
+
+        function typeNextChar() {
+            if (i < heroText.length) {
+                const delay = Math.random() * (150 - 60) + 60;
+                heroTitle.insertBefore(document.createTextNode(heroText.charAt(i)), cursor);
+                i++;
+                setTimeout(typeNextChar, delay);
+            } else {
+                cursor.classList.add('blink');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            typeNextChar();
+
+            document.querySelector('.scroll-top-cube').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            const aboutSection = document.getElementById('about');
+            const mouseFollower = aboutSection.querySelector('.mouse-follower');
+            let currentScale = 1;
+            let targetX = 0, targetY = 0;
+            let currentBlobX = 0, currentBlobY = 0;
+            let prevMouseX = 0, prevMouseY = 0;
+            let animationFrameId = null;
+            const easing = 0.4;
+
+            function updateBlobPosition() {
+                currentBlobX += (targetX - currentBlobX) * easing;
+                currentBlobY += (targetY - currentBlobY) * easing;
+
+                const dx = currentBlobX - prevMouseX;
+                const dy = currentBlobY - prevMouseY;
+                const speed = Math.sqrt(dx * dx + dy * dy);
+
+                let scaleX = 1, scaleY = 1, angle = 0;
+                if (speed > 2) {
+                    const stretch = Math.min(1 + speed / 50, 1.8);
+                    angle = Math.atan2(dy, dx) * (180 / Math.PI);
+                    scaleX = stretch;
+                    scaleY = Math.max(1 / stretch, 0.6);
+                    mouseFollower.style.transform = `translate(-50%, -50%) translate(${currentBlobX}px, ${currentBlobY}px) rotate(${angle}deg) scaleX(${scaleX * currentScale}) scaleY(${scaleY * currentScale})`;
+                } else {
+                    mouseFollower.style.transform = `translate(-50%, -50%) translate(${currentBlobX}px, ${currentBlobY}px) scale(${currentScale})`;
+                }
+
+                prevMouseX = currentBlobX;
+                prevMouseY = currentBlobY;
+                if (mouseFollower.classList.contains('active')) {
+                    animationFrameId = requestAnimationFrame(updateBlobPosition);
+                } else if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                }
+            }
+
+            if (aboutSection && mouseFollower) {
+                aboutSection.addEventListener('mouseenter', e => {
+                    mouseFollower.classList.add('active');
+                    aboutSection.style.cursor = 'none';
+                    const rect = aboutSection.getBoundingClientRect();
+                    targetX = e.clientX - rect.left;
+                    targetY = e.clientY - rect.top;
+                    currentBlobX = targetX;
+                    currentBlobY = targetY;
+                    prevMouseX = currentBlobX;
+                    prevMouseY = currentBlobY;
+                    mouseFollower.style.opacity = '1';
+                    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+                    animationFrameId = requestAnimationFrame(updateBlobPosition);
+                });
+
+                aboutSection.addEventListener('mouseleave', () => {
+                    mouseFollower.classList.remove('active', 'grow');
+                    aboutSection.style.cursor = 'auto';
+                    currentScale = 1;
+                    mouseFollower.style.opacity = '0';
+                    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+                });
+
+                aboutSection.addEventListener('mousemove', e => {
+                    const rect = aboutSection.getBoundingClientRect();
+                    targetX = e.clientX - rect.left;
+                    targetY = e.clientY - rect.top;
+
+                    if (mouseFollower.classList.contains('active') && !animationFrameId) {
+                        animationFrameId = requestAnimationFrame(updateBlobPosition);
+                    }
+                });
+
+                aboutSection.addEventListener('mousedown', () => {
+                    if (mouseFollower.classList.contains('active')) {
+                        mouseFollower.classList.add('grow');
+                        currentScale = 1.5;
+                    }
+                });
+
+                aboutSection.addEventListener('mouseup', () => {
+                    mouseFollower.classList.remove('grow');
+                    currentScale = 1;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
