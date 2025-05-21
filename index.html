@@ -301,6 +301,17 @@
                 transform: translate(-40%, -60%) scale(1.1);
             }
         }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: none;
+        }
     </style>
 </head>
 <body>
@@ -324,7 +335,7 @@
     </header>
 
     <div class="container">
-    <section id="about" class="section">
+    <section id="about" class="section fade-in-section">
         <div class="mouse-follower"></div>
         <div class="about-wrapper">
             <img src="your-image.png" alt="About Me Image" />
@@ -370,7 +381,7 @@
     }
 </style>
 
-        <section id="projects" class="section">
+        <section id="projects" class="section fade-in-section">
             <h2>Projects</h2>
             <div class="project">
                 <h3>Roku Fitness App</h3>
@@ -387,18 +398,18 @@
                     <br/>
                     <a href="https://github.com/OwenPainter/weather-dashboard" target="_blank">View on GitHub</a>
                 </p>
-            </div>
+            </div> -->
             <div class="project">
-                <h3>Portfolio Website</h3>
+                <h3>Portfolio Website</h3> 
                 <p>
                     This site! Built with HTML, CSS, and JavaScript, showcasing dynamic UI elements and animations.
                     <br/>
-                    <a href="https://github.com/OwenPainter/portfolio" target="_blank">View on GitHub</a>
+                    <a href="https://github.com/OwenPainter/owenpainter.github.io" target="_blank">View on GitHub</a>
                 </p>
-            </div> -->
+            </div>
         </section>
 
-        <section id="contact" class="section">
+        <section id="contact" class="section fade-in-section">
             <h2>Contact</h2>
             <p>GitHub: <a href="https://github.com/OwenPainter" target="_blank">OwenPainter</a></p>
             <!-- <p>LinkedIn: <a href="https://linkedin.com/in/yourusername" target="_blank">yourusername</a></p> -->
@@ -410,6 +421,26 @@
     </footer>
 
     <script>
+
+        const faders = document.querySelectorAll('.fade-in-section');
+
+        const options = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Remove if you want to animate only once
+                }
+            });
+        }, options);
+
+        faders.forEach(section => {
+            observer.observe(section);
+        });
+
         const heroTitle = document.getElementById('hero-title');
         const heroText = "Owen Painter";
         const cursor = document.createElement('span');
@@ -520,7 +551,25 @@
                     currentScale = 1;
                 });
             }
+        const OFFSET = -30;
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href.startsWith('#')) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const top = target.getBoundingClientRect().top + window.pageYOffset;
+                        window.scrollTo({
+                            top: top + OFFSET,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
         });
+    });
     </script>
 </body>
 </html>
