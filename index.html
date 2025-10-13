@@ -312,6 +312,15 @@
             opacity: 1;
             transform: none;
         }
+        .blink {
+            animation: blink 0.7s step-end infinite alternate;
+        }
+
+        .fade-out {
+            opacity: 1;
+            transition: opacity 0.8s ease-out;
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
@@ -329,7 +338,7 @@
         <div class="hero-content">
             <h1 id="hero-title"></h1>
             <p>
-                I'm a software developer with experience building cross-platform streaming applications.
+                I'm a computer engineering student at Virginia Tech.
             </p>
         </div>
     </header>
@@ -341,7 +350,7 @@
             <img src="your-image.png" alt="About Me Image" />
             <div class="about-wrapper-text">
                 <h2>About Me</h2>
-                <p>I'm a software developer with experience building cross-platform streaming applications...</p>
+                <p>I'm a software developer with experience in building apps and cyber security</p>
 
                 <h3>Tech I Use</h3>
                 <ul class="tech-icons">
@@ -386,7 +395,7 @@
             <div class="project">
                 <h3>Roku Fitness App</h3>
                 <p>
-                    A custom Roku channel developed in BrightScript...
+                    A fitness app for Roku developed in Brightscript
                     <br/>
                     <a href="https://github.com/OwenPainter/OwenRokuProject" target="_blank">View on GitHub</a>
                 </p>
@@ -412,7 +421,7 @@
         <section id="contact" class="section fade-in-section">
             <h2>Contact</h2>
             <p>GitHub: <a href="https://github.com/OwenPainter" target="_blank">OwenPainter</a></p>
-            <!-- <p>LinkedIn: <a href="https://linkedin.com/in/yourusername" target="_blank">yourusername</a></p> -->
+            <p>LinkedIn: <a href="https://linkedin.com/in/owenneilpainter" target="_blank">owenneilpainter</a></p>
         </section>
     </div>
 
@@ -458,6 +467,17 @@
                 setTimeout(typeNextChar, delay);
             } else {
                 cursor.classList.add('blink');
+                setTimeout(removeCursor, 1000);
+            }
+        }
+
+        function removeCursor() {
+            if (cursor && cursor.parentNode){
+                cursor.classList.remove('blink');
+                cursor.classList.add('fade-out'); 
+                setTimeout(() => {
+                    if (cursor.parentNode) cursor.remove();
+                }, 800);
             }
         }
 
