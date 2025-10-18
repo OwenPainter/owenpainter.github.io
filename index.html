@@ -113,6 +113,7 @@
 
         .typing-cursor {
             display: inline-block;
+            width: 0.6ch;
             color: white;
             margin-left: 2px;
             animation: none;
@@ -209,7 +210,7 @@
         #contact h2 {
             text-align: center; /* Center the section titles */
             margin-bottom: 1.5rem;
-            padding-top: 30px; /* Add 20 pixels of padding at the top */
+            padding-top: 30px; /* Add 30 pixels of padding at the top */
         }
 
         .project {
@@ -239,7 +240,7 @@
             text-align: center; /* Center the contact information */
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
-            padding-top: 30px; /* Add 20 pixels of padding at the top */
+            padding-top: 30px; /* Add 30 pixels of padding at the top */
         }
 
         footer {
@@ -320,6 +321,7 @@
             opacity: 1;
             transition: opacity 0.8s ease-out;
             opacity: 0;
+            width: 0.6ch;
         }
     </style>
 </head>
@@ -441,7 +443,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Remove if you want to animate only once
+                    observer.unobserve(entry.target);
                 }
             });
         }, options);
@@ -451,7 +453,7 @@
         });
 
         const heroTitle = document.getElementById('hero-title');
-        const heroText = "Owen Painter";
+        const heroText = "  Owen Painter";
         const cursor = document.createElement('span');
         cursor.classList.add('typing-cursor');
         cursor.textContent = '|';
@@ -472,11 +474,11 @@
         }
 
         function removeCursor() {
-            if (cursor && cursor.parentNode){
+            if (cursor) {
                 cursor.classList.remove('blink');
-                cursor.classList.add('fade-out'); 
+                cursor.classList.add('fade-out');
                 setTimeout(() => {
-                    if (cursor.parentNode) cursor.remove();
+                    cursor.style.visibility = 'hidden';
                 }, 800);
             }
         }
