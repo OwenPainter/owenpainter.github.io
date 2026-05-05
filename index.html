@@ -357,29 +357,44 @@
 
         .tech-icons li {
             margin: 0;
-            width: 48px;
-            height: 48px;
+            width: 110px;
+            height: 120px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
+            border-radius: 20px;
             border: 1px solid var(--card-border);
-            padding: 8px;
+            padding: 20px;
+            gap: 12px;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .tech-icons li span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #94a3b8;
+            transition: color 0.3s ease;
         }
 
         .tech-icons li:hover {
-            transform: translateY(-5px) scale(1.1);
+            transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.08);
             border-color: var(--accent-secondary);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(6, 182, 212, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(6, 182, 212, 0.15);
         }
 
-        .tech-icon-image {
-            width: 100%;
-            height: 100%;
+        .tech-icons .tech-icon-image {
+            width: 32px;
+            height: 32px;
             object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-icons li:hover .tech-icon-image {
+            transform: scale(1.1);
         }
 
         @media (min-width: 768px) {
@@ -720,16 +735,38 @@
 
                     <h3>Tech I Use</h3>
                     <ul class="tech-icons">
-                        <li title="Bash"><img class="tech-icon-image" src="bash-logo.png" alt="Bash Logo" loading="lazy"
-                                decoding="async"></li>
-                        <li title="PowerShell"><img class="tech-icon-image" src="powershell-logo.png"
-                                alt="PowerShell Logo" loading="lazy" decoding="async"></li>
-                        <li title="Java"><img class="tech-icon-image" src="java-logo.png" alt="Java Logo" loading="lazy"
-                                decoding="async"></li>
-                        <li title="Python"><img class="tech-icon-image" src="python-logo.png" alt="Python Logo"
-                                loading="lazy" decoding="async"></li>
-                        <li title="BrightScript/Roku"><img class="tech-icon-image" src="brightscript-roku-logo.png"
-                                alt="BrightScript/Roku Logo" loading="lazy" decoding="async"></li>
+                        <li title="Java">
+                            <img class="tech-icon-image" src="icons/java.png" alt="Java">
+                            <span>Java</span>
+                        </li>
+                        <li title="C++">
+                            <img class="tech-icon-image" src="icons/cplusplus.svg" alt="C++">
+                            <span>C++</span>
+                        </li>
+                        <li title="Python">
+                            <img class="tech-icon-image" src="icons/python.svg" alt="Python">
+                            <span>Python</span>
+                        </li>
+                        <li title="C">
+                            <img class="tech-icon-image" src="icons/c.svg" alt="C">
+                            <span>C</span>
+                        </li>
+                        <li title="HTML5">
+                            <img class="tech-icon-image" src="icons/html5.svg" alt="HTML5">
+                            <span>HTML5</span>
+                        </li>
+                        <li title="Arduino">
+                            <img class="tech-icon-image" src="icons/arduino.svg" alt="Arduino">
+                            <span>Arduino</span>
+                        </li>
+                        <li title="Linux">
+                            <img class="tech-icon-image" src="icons/linux.svg" alt="Linux">
+                            <span>Linux</span>
+                        </li>
+                        <li title="Git">
+                            <img class="tech-icon-image" src="icons/git.svg" alt="Git">
+                            <span>Git</span>
+                        </li>
                     </ul>
                 </div>
             </div>
