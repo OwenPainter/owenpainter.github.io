@@ -11,7 +11,7 @@
     <link rel="preload" as="style"
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="preload" as="image" href="forest.jpg">
+    <link rel="preload" as="image" href="forest.png">
 
     <style>
         :root {
@@ -114,7 +114,7 @@
 
         /* Hero */
         header.hero {
-            background-image: linear-gradient(to bottom, rgba(11, 17, 33, 0.6), var(--bg-color)), url('forest.jpg');
+            background-image: url('forest.png');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
@@ -906,7 +906,7 @@
             // Fireflies logic
             const heroSection = document.querySelector('header.hero');
             if (heroSection) {
-                const numFireflies = 15;
+                const numFireflies = 6;
                 for (let j = 0; j < numFireflies; j++) {
                     let firefly = document.createElement('div');
                     firefly.classList.add('firefly');
