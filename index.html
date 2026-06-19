@@ -5,20 +5,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Owen Painter - Portfolio</title>
+
+    <!-- Open Graph / LinkedIn link preview tags -->
+    <meta property="og:title" content="Owen Painter - Portfolio" />
+    <meta property="og:description"
+        content="Computer Engineering student at Virginia Tech interested in programming and building fun projects." />
+    <meta property="og:image" content="https://owenpainter.github.io/forest.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://owenpainter.github.io/" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Owen Painter - Portfolio" />
+    <meta name="twitter:description"
+        content="Computer Engineering student at Virginia Tech interested in programming and building fun projects." />
+    <meta name="twitter:image" content="https://owenpainter.github.io/forest.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link rel="preload" as="image" href="forest.png">
-
     <style>
         :root {
             /* Warmed up the dark backgrounds to fit the maroon/orange aesthetic */
-            --bg-color: #120b0c; 
+            --bg-color: #120b0c;
             --text-color: #e2e8f0;
-            --accent-primary: #861F41; /* VT Chicago Maroon */
-            --accent-secondary: #E5751F; /* VT Burnt Orange */
+            --accent-primary: #861F41;
+            /* VT Chicago Maroon */
+            --accent-secondary: #E5751F;
+            /* VT Burnt Orange */
             --card-bg: rgba(45, 20, 25, 0.7);
             --card-border: rgba(255, 255, 255, 0.1);
         }
@@ -656,12 +674,12 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            
+
             /* ---- FIX: Change background attachment to scroll on mobile to fix iOS Safari bug ---- */
             header.hero {
                 background-attachment: scroll;
             }
-            
+
             .nav {
                 padding: 10px 20px;
             }
